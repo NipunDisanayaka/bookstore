@@ -1,4 +1,4 @@
-package com.bookstore.entity;
+package com.bookstore.bookstore.entity;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -31,6 +31,7 @@ public class Order {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(nullable = true)
     private LocalDateTime updatedAt;
 
     @Column(nullable = false)
