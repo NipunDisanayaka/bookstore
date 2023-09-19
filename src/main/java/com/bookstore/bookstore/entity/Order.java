@@ -42,13 +42,13 @@ public class Order {
     private User user;
 
 
-    @ManyToMany(cascade = { CascadeType.ALL}, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Item.class, cascade = { CascadeType.ALL}, fetch = FetchType.EAGER)
     @JoinTable(
         name = "order_items",
         joinColumns = { @JoinColumn(name = "order_id")},
         inverseJoinColumns = { @JoinColumn(name = "item_id") }
     )
-    private Set<Item> items = new HashSet<>();
+     Set<Item> items;
 
 
     //Get the system time on Order create and update

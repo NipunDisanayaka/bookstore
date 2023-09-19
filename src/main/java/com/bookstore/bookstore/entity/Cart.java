@@ -1,23 +1,25 @@
 package com.bookstore.bookstore.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "cart")
 @Data
-public class Category {
+public class Cart {
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String destription;
+    @OneToOne
+    private Item item;
 
-    @Column(nullable = false)
-    private String name;
+    @OneToOne
+    private User user;
 }
