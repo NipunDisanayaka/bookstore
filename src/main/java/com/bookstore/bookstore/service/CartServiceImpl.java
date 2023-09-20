@@ -33,5 +33,10 @@ public class CartServiceImpl implements CartService{
     public Cart getCartItemById(Long id) {
        return cartRepository.findById(id).orElseThrow(() -> new NoSuchElementException("CartItem not found : "+id));
     }
+
+    @Override
+    public List<Cart> findCartItemsByUserID(Long userId) {
+       return cartRepository.findCartItemsByUserId(userId);
+    }
   
 }

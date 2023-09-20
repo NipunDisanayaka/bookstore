@@ -35,10 +35,16 @@ public class CartController {
         return ResponseEntity.status(HttpStatus.OK).body(cartService.getCartItemById(id));
     }
 
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<Cart> getCartItemsByUserID(@PathVariable Long userId){
+        return ResponseEntity.status(HttpStatus.OK).body(cartService.getCartItemById(userId));
+    }
+
     @PostMapping
     public ResponseEntity<Cart> createCartItem(@RequestBody Cart cartItem){
         return ResponseEntity.status(HttpStatus.CREATED).body(cartService.createCartItem(cartItem));
     }
+
 
     @DeleteMapping
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id){

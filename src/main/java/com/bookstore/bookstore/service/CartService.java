@@ -12,4 +12,5 @@ public interface CartService {
     Cart createCartItem(Cart cartItem);
     Cart getCartItemById(Long id);
     void deleteCartItem(Long id);
+    List<Cart> findCartItemsByUserID(Long userId);
 }
