@@ -33,7 +33,7 @@ public class Item {
     private Double price;
 
     @Column(nullable = false)
-    private Double qty;
+    private Double availableQty;
 
     @Column(nullable = true)
     private String author;
@@ -49,8 +49,8 @@ public class Item {
     // )
     // private Set<Item> items;
 
-    @ManyToMany(mappedBy = "items")
-     Set<Order> orders;
+    // @ManyToMany(mappedBy = "items")
+    //  Set<Order> orders;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Subcategory_id") //Foreign Key of Category

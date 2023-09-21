@@ -36,7 +36,7 @@ public class ItemServiceImpl implements ItemService {
 
       existingItem.setTitle(item.getTitle());
       existingItem.setPrice(item.getPrice());
-      existingItem.setQty(item.getQty());
+      existingItem.setAvailableQty(item.getAvailableQty());
       existingItem.setAuthor(item.getAuthor());
       existingItem.setDescription(item.getDescription());
 

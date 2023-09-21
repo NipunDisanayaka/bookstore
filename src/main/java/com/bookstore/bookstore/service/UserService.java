@@ -1,6 +1,7 @@
 package com.bookstore.bookstore.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -13,5 +14,6 @@ public interface UserService {
     User saveUser(User user);
     User updateUser(Long id,User user);
     void deleteUser(Long id);
+    User findByUsername(String username);
 
 }

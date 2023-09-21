@@ -2,6 +2,7 @@ package com.bookstore.bookstore.service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,11 @@ public class UserServiceImpl implements UserService{
     @Override
     public void deleteUser(Long id) {
        userRepository.deleteById(id);
+    }
+
+    @Override
+    public User findByUsername(String username) {
+     return userRepository.findByUsername(username);
     }
     
 }
