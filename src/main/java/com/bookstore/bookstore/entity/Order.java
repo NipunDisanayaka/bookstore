@@ -38,9 +38,9 @@ public class Order {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id") //Foreign key of User Entity
-    private User user;
+    // @ManyToOne(fetch = FetchType.EAGER)
+    // @JoinColumn(name = "user_id") //Foreign key of User Entity
+    // private User user;
 
     private Double totalAmount;
 
@@ -53,9 +53,9 @@ public class Order {
     // )
     //  Set<Item> items;
 
-     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Cart.class)
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
-    private List<Cart> cartItems;
+    //  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, targetEntity = Cart.class)
+    // @JoinColumn(name = "order_id", referencedColumnName = "id")
+    // private List<Cart> cartItems;
 
 
     //Get the system time on Order create and update
@@ -65,9 +65,7 @@ public class Order {
        
     }
 
-    public Order(User user2, List<Cart> cartItems,Double totalAmount) {
-        this.user = user2;
-        this.cartItems = cartItems;
+    public Order(Double totalAmount) {
         this.totalAmount=totalAmount;
     }
 

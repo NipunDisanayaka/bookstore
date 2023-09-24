@@ -56,10 +56,10 @@ public class OrderController {
 
         Double amount = orderService.getCartAmount(orderDto.getCartItems());
 
-         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-         String username1 = auth.getName();
+        //  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        //  String username1 = auth.getName();
 
-        Order order = new Order(userService.findByUsername(username1), orderDto.getCartItems(),amount);
+        Order order = new Order(amount);
         order = orderService.createOrder(order);
 
         responceOrderDto.setAmount(amount);

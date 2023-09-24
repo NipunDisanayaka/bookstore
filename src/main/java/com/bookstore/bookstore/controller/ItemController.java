@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bookstore.bookstore.dto.ItemImageDto;
 import com.bookstore.bookstore.entity.Item;
 import com.bookstore.bookstore.service.ItemService;
 
@@ -36,6 +38,18 @@ public class ItemController {
     public ResponseEntity<Item> getItemById(@PathVariable Long id){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(itemService.getItemById(id));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+
+        }
+    }
+
+    @GetMapping("/subCategory/{id}")
+    public ResponseEntity<List<Item>> getItemBySubCategoryId(@PathVariable Long id){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(itemService.getItemsBySubCategoryId(id));
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         } catch (Exception e) {
@@ -67,6 +81,13 @@ public class ItemController {
             return ResponseEntity.status(HttpStatus.OK).body(null);
         }
 }
+
+     @PostMapping("/{id}/item")
+    public ResponseEntity<Item> updateProfile(@PathVariable Long id, @ModelAttribute ItemImageDto itemImageDto) {
+        return new ResponseEntity<Item>(itemService.updateItemImage(id, itemImageDto), HttpStatus.OK);
+    }
+
+
 
 @DeleteMapping("/{id}")
 public ResponseEntity<Void> deleteUser(@PathVariable Long id) {

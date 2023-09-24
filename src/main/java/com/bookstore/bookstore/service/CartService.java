@@ -13,6 +13,11 @@ public interface CartService {
     Cart getCartItemById(Long id);
     void deleteCartItem(Long id);
     void deleteAll();
+    Boolean existByUserId(Long userId);
+    Boolean existByItemId(Long itemId);
+    List<Cart> getCartByUserId(Long userId);
+    // List<Cart> findByUserId(Long id);
     // List<Cart> findCartItemsByUserID(Long userId);
     // Cart addToCart(Long itemId);
+
 }

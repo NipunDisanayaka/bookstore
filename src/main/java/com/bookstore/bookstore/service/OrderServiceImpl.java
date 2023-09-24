@@ -54,7 +54,7 @@ public class OrderServiceImpl implements OrderService{
                 Item item1 = item.get();
                 if(item1.getAvailableQty() < cart.getQty()){
                     singleCartAmount = item1.getPrice()*item1.getAvailableQty();
-                    cart.setQty(item1.getAvailableQty());
+                    // cart.setQty(item1.getAvailableQty());
                 } else {
                     singleCartAmount = cart.getQty() * item1.getPrice();
                     availableQty = item1.getAvailableQty()-cart.getQty();
@@ -62,8 +62,8 @@ public class OrderServiceImpl implements OrderService{
                 totalCartAmount=totalCartAmount+singleCartAmount;
                 item1.setAvailableQty(availableQty);
                 availableQty=0;
-                 cart.setItemName(item1.getTitle());
-                 cart.setAmount(singleCartAmount);
+                //  cart.setItemName(item1.getTitle());
+                //  cart.setAmount(singleCartAmount);
                 itemRepository.save(item1);
             }
         }

@@ -6,7 +6,8 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +23,13 @@ import com.bookstore.bookstore.service.CartService;
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/addToCart")
-@EnableMethodSecurity
 public class CartController {
     
     @Autowired
     private CartService cartService;
+
+   
+    // String username1 = "nipun562001";
 
     @GetMapping
     public ResponseEntity<List<Cart>> getAllCartItems(){
@@ -39,9 +42,9 @@ public class CartController {
     }
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<Cart> getCartItemsByUserID(@PathVariable Long userId){
+    public ResponseEntity<List<Cart>> getCartItemsByUserID(@PathVariable Long userId){
         try {
-             return ResponseEntity.status(HttpStatus.OK).body(cartService.getCartItemById(userId));
+             return ResponseEntity.status(HttpStatus.OK).body(cartService.getCartByUserId(userId));
             
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -50,19 +53,26 @@ public class CartController {
         }
     }
 
+
+
     @PostMapping
     public ResponseEntity<Cart> createCartItem(@RequestBody Cart cartItem){
-        return ResponseEntity.status(HttpStatus.CREATED).body(cartService.createCartItem(cartItem));
-    }
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(cartService.createCartItem(cartItem));
+        } catch (Exception e) {
+           return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+             
+
 
     
     // @GetMapping("/add/{itemId}")
     // public ResponseEntity<Cart> addToCart(@PathVariable Long itemId){
     //     return ResponseEntity.status(HttpStatus.CREATED).body(cartService.addToCart(itemId));
-    // }
+     }
 
 
-    @DeleteMapping
+    @GetMapping("/delete/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id){
         try {
             cartService.deleteCartItem(id);

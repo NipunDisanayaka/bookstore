@@ -39,6 +39,26 @@ public class CartServiceImpl implements CartService{
         cartRepository.deleteAll();
     }
 
+    @Override
+    public Boolean existByUserId(Long userId) {
+       return cartRepository.existsByUserId(userId);
+    }
+
+    @Override
+    public Boolean existByItemId(Long itemId) {
+       return cartRepository.existsByItemId(itemId);
+    }
+
+    @Override
+    public List<Cart> getCartByUserId(Long userId) {
+       return cartRepository.getCartByUserId(userId);
+    }
+
+    // @Override
+    // public List<Cart> findByUserId(Long id) {
+    //    return cartRepository.findByUserId(id);
+    // }
+
     // @Override
     // public List<Cart> findCartItemsByUserID(Long userId) {
     //    return cartRepository.findCartItemsByUserId(userId);
