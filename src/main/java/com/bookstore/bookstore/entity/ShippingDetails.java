@@ -27,7 +27,11 @@ public class ShippingDetails {
 
     private String city;
 
+    private String province;
+
     private String tp;
+
+    private double totalAmount;
 
     @Column(updatable = false)
     private LocalDateTime createdAt;
