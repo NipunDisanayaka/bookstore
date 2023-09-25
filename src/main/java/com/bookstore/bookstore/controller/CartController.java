@@ -82,4 +82,29 @@ public class CartController {
         }
     }
 
+     @GetMapping("/delete")
+    public ResponseEntity<Void> deleteAll(){
+        try {
+            cartService.deleteAll();;
+            return ResponseEntity.status(HttpStatus.OK).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+     @GetMapping("/delete/user/{id}")
+    public ResponseEntity<Void> deleteCartByUserId(@PathVariable Long id){
+        try {
+           cartService.deleteCartsByUserId(id);
+            return ResponseEntity.status(HttpStatus.OK).body(null);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    // @DeleteMapping("/{userId}")
+    // public void deleteCartsByUserId(@PathVariable Long userId) {
+    //     cartService.deleteCartsByUserId(userId);
+    // }
+
 }

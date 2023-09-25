@@ -20,4 +20,7 @@ public interface CartRepository extends JpaRepository<Cart,Long> {
 
     List<Cart> getCartByUserId(Long userId);
 
+    @Query("DELETE FROM Cart c WHERE c.user.id = :userId")
+    void deleteByUserId(Long userId);
+
 }

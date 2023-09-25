@@ -16,6 +16,7 @@ public interface CartService {
     Boolean existByUserId(Long userId);
     Boolean existByItemId(Long itemId);
     List<Cart> getCartByUserId(Long userId);
+    void deleteCartsByUserId(Long userId);
     // List<Cart> findByUserId(Long id);
     // List<Cart> findCartItemsByUserID(Long userId);
     // Cart addToCart(Long itemId);
