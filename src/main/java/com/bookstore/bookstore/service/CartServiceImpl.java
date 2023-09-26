@@ -6,7 +6,9 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bookstore.bookstore.dto.CartQtyDto;
 import com.bookstore.bookstore.entity.Cart;
+import com.bookstore.bookstore.entity.Item;
 import com.bookstore.bookstore.repository.CartRepository;
 @Service
 public class CartServiceImpl implements CartService{
@@ -58,6 +60,24 @@ public class CartServiceImpl implements CartService{
    public void deleteCartsByUserId(Long userId) {
      cartRepository.deleteByUserId(userId);
    }
+
+   @Override
+   public Cart updateCart(Long id, CartQtyDto cartQtyDto) {
+      Cart existingCart = getCartItemById(id);
+
+      existingCart.setAmount(existingCart.getAmount());
+      existingCart.setAvailableQty(existingCart.getAvailableQty());
+      existingCart.setItemId(existingCart.getItemId());
+      existingCart.setItemName(existingCart.getItemName());
+      existingCart.setUser(existingCart.getUser());
+      existingCart.setQty(cartQtyDto.getQty());
+
+
+    return cartRepository.save(existingCart);
+   }
+
+  
+
 
     // @Override
     // public List<Cart> findByUserId(Long id) {

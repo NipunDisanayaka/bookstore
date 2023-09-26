@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.bookstore.bookstore.dto.CartQtyDto;
 import com.bookstore.bookstore.entity.Cart;
 
 @Service
@@ -17,6 +18,7 @@ public interface CartService {
     Boolean existByItemId(Long itemId);
     List<Cart> getCartByUserId(Long userId);
     void deleteCartsByUserId(Long userId);
+    Cart updateCart(Long id, CartQtyDto cartQtyDto);
     // List<Cart> findByUserId(Long id);
     // List<Cart> findCartItemsByUserID(Long userId);
     // Cart addToCart(Long itemId);
