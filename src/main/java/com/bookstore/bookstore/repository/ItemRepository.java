@@ -11,7 +11,7 @@ import com.bookstore.bookstore.entity.Item;
 @Repository
 public interface ItemRepository extends JpaRepository<Item,Long> {
 
-    @Query("SELECT item FROM Item item WHERE item.subCategory.id = :categoryId")
+    @Query("SELECT item FROM Item item WHERE item.subCategory.category.id = :categoryId")
     List<Item> findItemsByCategoryId(@Param("categoryId") Long categoryId);
 
     List<Item> getItemsBySubCategoryId(Long subCategoryId);
